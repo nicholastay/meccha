@@ -60,9 +60,9 @@
     </Compile>
     <Compile Include="KeyboardHook.cs" />
     <Compile Include="Keyboards\BaseBoard.cs" />
-    <Compile Include="Keyboards\MxBlueBoard.cs" />
+    <Compile Include="Keyboards\Boards\MxBlueBoard.cs" />
     <Compile Include="Keyboards\BasicSoundBaseBoard.cs" />
-    <Compile Include="Keyboards\TtsBoard.cs" />
+    <Compile Include="Keyboards\Boards\TtsBoard.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">

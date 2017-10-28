@@ -8,6 +8,8 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Media;
+using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Speech.Synthesis;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -28,12 +30,12 @@ namespace Meccha
         {
             InitializeComponent();
 
-            Hook = new KeyboardHook();
-            Hook.Hook();
-
             populateBoards();
             comboBox1.SelectedIndex = 0;
             //setBoard(boardTypes[0]);
+
+            Hook = new KeyboardHook();
+            Hook.Hook();
 
             Hook.KeyDown += (s, e) => board.OnKeyDown(e);
             Hook.KeyUp += (s, e) => board.OnKeyUp(e);
@@ -41,11 +43,12 @@ namespace Meccha
 
         private void populateBoards()
         {
-            boardTypes = new BoardType[]
-            {
-                new BoardType(this, typeof(MxBlueBoard)),
-                new BoardType(this, typeof(TtsBoard))
-            };
+            boardTypes = Assembly.GetExecutingAssembly()
+                .GetTypes()
+                .Where(t => t.Namespace == "Meccha.Keyboards.Boards"
+                    && !t.IsDefined(typeof(CompilerGeneratedAttribute), false)) // filter out the compilergenerated stuff (<>DisplayClass, etc. -- linq shit) ~ https://stackoverflow.com/questions/6513648/how-do-i-filter-out-c-displayclass-types-when-going-through-types-via-reflecti
+                .Select(t => new BoardType(this, t))
+                .ToArray();
 
             comboBox1.Items.AddRange(boardTypes);
         }

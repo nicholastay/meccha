@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Meccha.Keyboards
+namespace Meccha.Keyboards.Boards
 {
     public class MxBlueBoard : BasicSoundBaseBoard
     {

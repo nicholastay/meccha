@@ -9,7 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Meccha.Keyboards
+namespace Meccha.Keyboards.Boards
 {
     public class TtsBoard : BaseBoard
     {
