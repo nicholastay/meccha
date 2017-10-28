@@ -30,10 +30,12 @@ namespace Meccha
         private IntPtr hookId; // the id of our hook
         private LowLevelKeyboardProc hookCb; // so it doesnt get garbage cleaned, we need to store
 
+        public bool DropHeldDownKeys;
         public List<Keys> KeysDown = new List<Keys>(); // no repeats, but may also be useful to expose
 
-        public void Hook()
+        public void Hook(bool dropHeldDownKeys = true)
         {
+            DropHeldDownKeys = dropHeldDownKeys;
             hookCb = HookCallback;
 
             using (Process curProcess = Process.GetCurrentProcess())
@@ -75,7 +77,8 @@ namespace Meccha
                         KeysDown.Remove(k);
                     OnKeyUp(kiea);
                 }
-                else if (wParam == (IntPtr)WM_KEYDOWN && !KeysDown.Contains(k))
+                else if (wParam == (IntPtr)WM_KEYDOWN
+                    && (!DropHeldDownKeys || !KeysDown.Contains(k)))
                 {
                     KeysDown.Add(k);
                     OnKeyDown(kiea);
