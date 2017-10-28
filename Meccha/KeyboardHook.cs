@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -17,7 +18,7 @@ namespace Meccha
 
         [DllImport("user32.dll", SetLastError = true)]
         private static extern IntPtr SetWindowsHookEx(int idHook, LowLevelKeyboardProc lpfn, IntPtr hMod, uint dwThreadId);
-        [DllImport("user32.dll", SetLastError = true)]
+        [DllImport("user32.dll")]
         private static extern IntPtr CallNextHookEx(IntPtr hhk, int hCode, IntPtr wParam, IntPtr lParam);
         [DllImport("user32.dll", SetLastError = true)]
         private static extern bool UnhookWindowsHookEx(IntPtr hhk);
@@ -38,13 +39,26 @@ namespace Meccha
             using (Process curProcess = Process.GetCurrentProcess())
             using (ProcessModule curModule = curProcess.MainModule)
             {
-                hookId = SetWindowsHookEx(WH_KEYBOARD_LL, hookCb, GetModuleHandle(curModule.ModuleName), 0);
+                IntPtr handle = GetModuleHandle(curModule.ModuleName);
+                if (handle == null)
+                    throwLastError("Failed to get the module handle for the current process.");
+
+                hookId = SetWindowsHookEx(WH_KEYBOARD_LL, hookCb, handle, 0);
+                if (hookId == null)
+                    throwLastError("Failed to create hook for keyboard.");
             }
         }
 
         public void Dispose()
         {
-            UnhookWindowsHookEx(hookId);
+            bool s = UnhookWindowsHookEx(hookId);
+            if (!s)
+                throwLastError("Failed to unhook hook whilst disposing.");
+        }
+
+        private void throwLastError(string m)
+        {
+            throw new Win32Exception(Marshal.GetLastWin32Error(), m);
         }
 
         private IntPtr HookCallback(int nCode, IntPtr wParam, IntPtr lParam)
