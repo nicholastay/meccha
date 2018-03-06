@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Meccha", "Meccha\Meccha.csproj", "{55E033F9-C2C9-402F-B06D-EA8C461FF491}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Meccha", "Meccha.csproj", "{55E033F9-C2C9-402F-B06D-EA8C461FF491}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

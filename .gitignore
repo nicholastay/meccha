@@ -9,13 +9,13 @@
 *.sln.docstates
 
 # Build results
-
 [Dd]ebug/
 [Rr]elease/
 x64/
-build/
 [Bb]in/
 [Oo]bj/
+# build folder is nowadays used for build scripts and should not be ignored
+#build/
 
 # NuGet Packages
 *.nupkg
@@ -187,6 +187,9 @@ $RECYCLE.BIN/
 
 # Visual Studio temp something
 .vs/
+
+# dotnet stuff
+project.lock.json
 
 # VS 2015+
 *.vc.vc.opendb
