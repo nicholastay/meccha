@@ -49,4 +49,7 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy "$(TargetDir)$(TargetFileName)" "$(SolutionDir)Meccha\bin\$(ConfigurationName)\" /F /Y</PostBuildEvent>
+  </PropertyGroup>
 </Project>
