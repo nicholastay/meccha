@@ -5,7 +5,6 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Meccha.Board
 {
@@ -22,8 +21,6 @@ namespace Meccha.Board
 
         public virtual byte[] OnKeyDown(int vk) { return null; }
         public virtual byte[] OnKeyUp(int vk) { return null; }
-
-        private float volume = 1f;
 
         protected byte[] stream2bytearr(Stream s)
         {
