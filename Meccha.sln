@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Meccha.Board.MxBlue", "Mecc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Meccha.Board", "Meccha.Board\Meccha.Board.csproj", "{7E39BB6E-11EB-408F-9B73-89E8E3E92DCC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Meccha.Board.Tts", "Meccha.Board.Tts\Meccha.Board.Tts.csproj", "{B926519E-760F-486E-AF78-E55D6040C4E3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{7E39BB6E-11EB-408F-9B73-89E8E3E92DCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E39BB6E-11EB-408F-9B73-89E8E3E92DCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E39BB6E-11EB-408F-9B73-89E8E3E92DCC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B926519E-760F-486E-AF78-E55D6040C4E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B926519E-760F-486E-AF78-E55D6040C4E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B926519E-760F-486E-AF78-E55D6040C4E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B926519E-760F-486E-AF78-E55D6040C4E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

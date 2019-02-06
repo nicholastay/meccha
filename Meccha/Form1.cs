@@ -45,6 +45,9 @@ namespace Meccha
 
         private void playSound(byte[] s)
         {
+            if (s == null)
+                return;
+
             MemoryStream ms = new MemoryStream(s);
             WaveFileReader r = new WaveFileReader(ms);
             WaveOut player = new WaveOut();
