@@ -12,8 +12,7 @@ namespace Meccha.Board.User
     {
         public new static string BoardName => "User Folder (\\user)";
 
-        static string basePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-        static string userDir = Path.Combine(basePath, "user");
+        static string userDir = Path.Combine(Tools.ProgramPath, "user");
 
         static string upPath = Path.Combine(userDir, "up");
         static string downPath = Path.Combine(userDir, "down");
@@ -25,8 +24,7 @@ namespace Meccha.Board.User
             if (!Directory.Exists(dir))
                 return null;
 
-            List<Stream> s = Directory.GetFiles(dir)
-                .Where(f => Path.GetExtension(f) == ".wav")
+            List<Stream> s = Directory.GetFiles(dir, "*.wav")
                 .Select(f => (Stream)File.Open(f, FileMode.Open))
                 .ToList();
 

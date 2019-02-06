@@ -26,8 +26,6 @@ namespace Meccha
 
         public float Volume => volumeBar.Value / 100f;
 
-        string programPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-
         public Form1()
         {
             InitializeComponent();
@@ -66,8 +64,7 @@ namespace Meccha
 
         private void populateBoards()
         {
-            IEnumerable<string> dlls = Directory.GetFiles(programPath)
-                .Where(f => f.EndsWith(".dll") && Path.GetFileNameWithoutExtension(f).StartsWith("Meccha.Board."));
+            IEnumerable<string> dlls = Directory.GetFiles(Tools.ProgramPath, "Meccha.Board.*.dll");
             foreach (string dll in dlls)
             {
                 Assembly asm = Assembly.LoadFile(dll);
