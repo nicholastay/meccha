@@ -26,6 +26,14 @@ namespace Meccha.Board
         {
             using (var ms = new MemoryStream())
             {
+                // reset the streams back to the start if this is called again
+                // eg randomized would crash upon making the class again, as its a static stream being reused
+                // and cause byte[0] as the stream was at the end.
+                // 
+                // probably good practice anyway
+                if (s.CanSeek)
+                    s.Seek(0, SeekOrigin.Begin);
+
                 s.CopyTo(ms);
                 return ms.ToArray();
             }
